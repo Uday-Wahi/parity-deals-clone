@@ -37,9 +37,8 @@ const PricingCard = ({
       <CardContent>
         <SignUpButton>
           <Button
-            className="text-base lg:text-lg rounded-lg"
+            className="text-base lg:text-lg rounded-lg w-full"
             variant={isMostPopular ? "accent" : "default"}
-            size={"lg"}
           >
             Get Started
           </Button>

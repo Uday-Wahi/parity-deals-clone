@@ -1,22 +1,23 @@
+import BrandLogo from "@/components/BrandLogo";
 import { Button } from "@/components/ui/button";
+import { subscriptionTiersInOrder } from "@/data/subscriptionTiers";
 import { SignUpButton } from "@clerk/nextjs";
 import { ArrowUpRightIcon } from "lucide-react";
 import Link from "next/link";
-import { NeonIcon } from "./_icons/Neon";
-import { ClerkIcon } from "./_icons/Clerk";
-import { subscriptionTiersInOrder } from "@/data/subscriptionTiers";
-import PricingCard from "./_components/PricingCard";
-import BrandLogo from "@/components/BrandLogo";
+import { footerData } from "../../data/footerData";
 import FooterLinkGroup from "./_components/FooterLinkGroup";
+import PricingCard from "./_components/PricingCard";
+import { ClerkIcon } from "./_icons/Clerk";
+import { NeonIcon } from "./_icons/Neon";
 
 const HomePage = () => {
   return (
     <>
       <section className="min-h-screen bg-[radial-gradient(hsl(0,72%,65%,40%),hsl(24,62%,73%,40%),hsl(var(--background))_60%)] flex items-center justify-center text-center text-balance flex-col gap-8 px-4">
-        <h1 className="text-6xl lg:text-7xl xl:text-8xl font-bold m-4 tracking-normal lg:tracking-tight xl:tracking-tighter">
-          Price Smarter, Sell Bigger!
+        <h1 className="text-4xl lg:text-7xl xl:text-8xl font-bold m-4 lg:tracking-tight xl:tracking-tighter mt-16">
+          Price Smarter, Sell bigger!
         </h1>
-        <p className="text-lg lg:text-3xl max-w-screen-xl">
+        <p className="text-md lg:text-3xl max-w-screen-xl mb-4">
           Optimize your product pricing across countries to maximize sales.
           Capture 85% of the untapped market with location-based dynamic pricing
         </p>
@@ -71,69 +72,29 @@ const HomePage = () => {
         <h2 className="text-4xl text-center text-balance font-semibold mb-8">
           Pricing software which pays for itself 20x over
         </h2>
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 max-w-screen-xl mx-auto">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 max-w-screen-xl mx-auto">
           {subscriptionTiersInOrder.map((tier) => (
             <PricingCard key={tier.name} {...tier} />
           ))}
         </div>
       </section>
 
-      <footer className="container pt-16 pb-8 flex flex-col sm:flex-row gap-8 sm:gap-4 justify-between items-start">
+      <footer className="container pt-16 pb-8 flex flex-col sm:flex-row gap-8 justify-between items-start">
         <Link href="/">
           <BrandLogo />
         </Link>
-        <div className="flex flex-col sm:flex-row gap-8">
-          <div className="flex flex-col gap-8">
-            <FooterLinkGroup
-              title="Help"
-              links={[
-                { label: "PPP Discounts", href: "#" },
-                { label: "Discount API", href: "#" },
-              ]}
-            />
-            <FooterLinkGroup
-              title="Solution"
-              links={[
-                { label: "Newsletter", href: "#" },
-                { label: "SaaS Business", href: "#" },
-                { label: "Online Courses", href: "#" },
-              ]}
-            />
-          </div>
-          <div className="flex flex-col gap-8">
-            <FooterLinkGroup
-              title="Features"
-              links={[{ label: "PPP Discounts", href: "#" }]}
-            />
-            <FooterLinkGroup
-              title="Tools"
-              links={[
-                { label: "Salary Converter", href: "#" },
-                { label: "Coupon Generator", href: "#" },
-                { label: "Stripe App", href: "#" },
-              ]}
-            />
-          </div>
-          <div className="flex flex-col gap-8">
-            <FooterLinkGroup
-              title="Company"
-              links={[
-                { label: "Affiliate", href: "#" },
-                { label: "Twitter", href: "#" },
-                { label: "Terms of Service", href: "#" },
-              ]}
-            />
-            <FooterLinkGroup
-              title="Integrations"
-              links={[
-                { label: "Lemon Squeezy", href: "#" },
-                { label: "Gumroad", href: "#" },
-                { label: "Stripe", href: "#" },
-                { label: "Chargebee", href: "#" },
-                { label: "Paddle", href: "#" },
-              ]}
-            />
-          </div>
+        <div className="flex flex-col sm:flex-row gap-16">
+          {footerData.map((arr, index) => (
+            <div className="flex flex-col gap-8" key={index}>
+              {arr.map((item) => (
+                <FooterLinkGroup
+                  key={item.title}
+                  title={item.title}
+                  links={item.links}
+                />
+              ))}
+            </div>
+          ))}
         </div>
       </footer>
     </>
